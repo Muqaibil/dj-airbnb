@@ -1,14 +1,26 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Room(models.Model):
+    owner = models.ForeignKey(User, related_name='room_owner', on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     price = models.IntegerField()
     description = models.TextField(max_length=10000)
     location = models.CharField(max_length=100)
     image = models.ImageField(upload_to='property/')
     category = models.ForeignKey('Category', related_name='room_category', on_delete=models.CASCADE)
+    slug = models.SlugField(null=True, blank=True)
+
+
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify (self.name)
+        super(Room, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

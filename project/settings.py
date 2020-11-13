@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'blog',
     'about',
     'property',
+    'django_summernote',
+    'django_seed',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, "media")
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

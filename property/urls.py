@@ -5,5 +5,5 @@ app_name = 'property'
 
 urlpatterns = [
     path('', views.RoomList.as_view()),
-    path('<int:pk>', views.RoomDetail.as_view()),
+    path('<slug:slug>', views.RoomDetail.as_view()),
 ]

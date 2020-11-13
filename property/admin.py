@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
 
@@ -10,13 +11,15 @@ class RoomImageTabular(admin.TabularInline):
     #and then merge into the Room admin page
     model = models.RoomImage
 
-class RoomAdmin(admin.ModelAdmin): 
+class RoomAdmin(SummernoteModelAdmin, admin.ModelAdmin): #Why did we put summernot before admi.modeladmin??
     #This customized admin is created to merge more than a model registeration into one page. 
     #for example, room and roomImages Here
 
     list_display = ['name','location','price']
     inlines = [RoomImageTabular,] 
-    
+    summernote_fields = ('description',)
+    prepopulated_fields = {'slug': ("name",)}
+
     #Tabular image container is included in the RoomAdmin page as this class is register and called
     #within the registeration method of model Room.
 
