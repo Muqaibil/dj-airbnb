@@ -17,7 +17,7 @@ class RoomAdmin(SummernoteModelAdmin, admin.ModelAdmin): #Why did we put summern
 
     list_display = ['name','location','price']
     inlines = [RoomImageTabular,] 
-    summernote_fields = ('description',)
+    summernote_fields = ('description')
     prepopulated_fields = {'slug': ("name",)}
 
     #Tabular image container is included in the RoomAdmin page as this class is register and called

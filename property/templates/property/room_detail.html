@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load bootstrap4 %}
 {% block body %}    
     <div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_5.jpg' %});">
       <div class="overlay"></div>
@@ -22,15 +22,12 @@
           	<div class="row">
           		<div class="col-md-12 ftco-animate">
           			<div class="single-slider owl-carousel">
+
+						{% for image in room.room_image.all %}
           				<div class="item">
-						  <div class="hotel-img" style="background-image: url({% static 'images/hotel-2.jpg' %});"></div>
-          				</div>
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url({% static 'images/hotel-3.jpg' %});"></div>
-          				</div>
-          				<div class="item">
-          					<div class="hotel-img" style="background-image: url({% static 'images/hotel-4.jpg' %});"></div>
-          				</div>
+						  <div class="hotel-img" style="background-image: url({{image.image.url}});"></div>
+						</div>
+						{% endfor %}  
           			</div>
           		</div>
           		<div class="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
@@ -55,59 +52,14 @@
           			<h4 class="mb-5">Check Availability &amp; Booking</h4>
           			<div class="fields">
           				<div class="row">
-          					<div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Name">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" class="form-control" placeholder="Email">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" id="checkin_date" class="form-control" placeholder="Date from">
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-				              <div class="form-group">
-				                <input type="text" id="checkin_date" class="form-control" placeholder="Date to">
-				              </div>
-				            </div>
-				            <div class="col-md-6">
-					            <div class="form-group">
-				                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Guest">
-			                      <option value="0">Guest</option>
-			                      <option value="1">1</option>
-			                      <option value="2">2</option>
-			                      <option value="3">3</option>
-			                      <option value="4">4</option>
-			                    </select>
-			                  </div>
-				              </div>
-			              </div>
-			              <div class="col-md-6">
-					            <div class="form-group">
-				                <div class="select-wrap one-third">
-			                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			                    <select name="" id="" class="form-control" placeholder="Children">
-			                      <option value="0">Children</option>
-			                      <option value="1">1</option>
-			                      <option value="2">2</option>
-			                      <option value="3">3</option>
-			                      <option value="4">4</option>
-			                    </select>
-			                  </div>
-				              </div>
-			              </div>
-				            <div class="col-md-12">
-				              <div class="form-group">
-				                <input type="submit" value="Check Availability" class="btn btn-primary py-3">
-				              </div>
-			              </div>
+							  <form method="POST">
+								{% csrf_token %}
+								{% bootstrap_form form %}
+								{% buttons %}
+									<button type="submit" class="btn btn-primary">Book</button>
+								{% endbuttons %}
+							  </form>
+
 		              </div>
 		            </div>
           		</div>

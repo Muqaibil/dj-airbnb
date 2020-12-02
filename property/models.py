@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 class Room(models.Model):
@@ -22,8 +23,13 @@ class Room(models.Model):
             self.slug = slugify (self.name)
         super(Room, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse ('rooms:property_detail', kwargs={'slug':self.slug})
+
     def __str__(self):
         return self.name
+
+   
 
 class RoomImage(models.Model):
     room = models.ForeignKey(Room, related_name='room_image', on_delete=models.CASCADE)
