@@ -19,6 +19,12 @@ class RoomDetail(FormMixin, DetailView):
     model = models.Room
     form_class = RoomBookForm
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["related_property"] = models.Room.objects.filter(category=self.get_object().category)
+        return context
+
+
     def post (self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()

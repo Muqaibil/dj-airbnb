@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_seed',
     'django_filters',
     "bootstrap4",
+    "taggit",
 ]
 
 MIDDLEWARE = [
