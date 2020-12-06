@@ -14,6 +14,7 @@ class RoomList(FilterView):
     model = models.Room
     filterset_class = PropertyFilter
     template_name = 'property/room_list.html'
+    paginate_by = 4
 
 class RoomDetail(FormMixin, DetailView):
     model = models.Room

@@ -13,6 +13,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, related_name='post_author', on_delete=models.CASCADE)
     viwe_count = models.IntegerField(default=0)
     category = models.ForeignKey('Category', related_name='post_category', on_delete=models.CASCADE)
+    content = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.title
