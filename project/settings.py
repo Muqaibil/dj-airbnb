@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "bootstrap4",
     "taggit",
     "settings",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
