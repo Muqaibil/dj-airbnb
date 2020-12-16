@@ -21,7 +21,7 @@ class PostList(ListView):
 class PostDetail(DetailView):
     model = Post
 
-    def get_context_data(seld, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context ["recent_posts"] = Post.objects.all()[:3]
         context ["categories"] = Category.objects.all().annotate(post_count=Count("post_category"))
