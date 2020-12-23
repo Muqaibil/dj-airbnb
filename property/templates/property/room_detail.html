@@ -46,7 +46,14 @@
     						<p>{{room.description | safe}}</p> <!-- safe is used to render HTML tags that coming from summernote or django admin page -->
 
     						
-          		</div>
+				</div>
+				
+				{% if room.check_availability == 'Available' %}
+					<h4> Available Now </h4>
+				{% else %}
+					<h4>The room is not Available, the book {{room.check_availability}}</h4>
+				{% endif %}			  
+
 
           		<div class="col-md-12 hotel-single ftco-animate mb-5 mt-4">
           			<h4 class="mb-5">Check Availability &amp; Booking</h4>

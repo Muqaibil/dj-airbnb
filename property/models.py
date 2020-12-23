@@ -29,6 +29,27 @@ class Room(models.Model):
     def __str__(self):
         return self.name
 
+    def check_availability(self):
+        all_reservations = self.room_book.all()
+        now = timezone.now().date()
+        for reservation in all_reservations:
+            if now > reservation.to_date:
+                return 'Available'
+            elif now > reservation.from_date and now < reservation.to_date:
+                return f'In Progress to {reservation.to_date}'
+        
+        return 'Available'
+
+    def get_avg_rating(self):
+        all_reviews =self.room_review.all()
+        all_rating = 0
+        if len(all_reviews) > 0:
+            for review in all_reviews:
+                all_rating += review.rate
+
+            return round(all_rating/len(all_reviews), 2)
+        else:
+            return '-'
    
 
 class RoomImage(models.Model):
@@ -51,6 +72,7 @@ class Category(models.Model):
 
 class RoomReview(models.Model):
     room = models.ForeignKey(Room, related_name='room_review', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='review_author',on_delete=models.CASCADE)
     rate = models.IntegerField(default=0)
     feedback = models.TextField(max_length=300, blank=True, null=True)
 
@@ -68,3 +90,9 @@ class RoomBook(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+    def in_progress(self):
+        now = timezone.now().date()
+        return now > self.from_date and now < self.to_date
+
+    in_progress.boolean = True
