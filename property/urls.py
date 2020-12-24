@@ -6,6 +6,7 @@ app_name = 'property'
 
 urlpatterns = [
     path('', views.RoomList.as_view(), name='property_list'),
+    path('new', views.NewProperty.as_view(), name='NewProperty'),
     path('<slug:slug>', views.RoomDetail.as_view(), name='property_detail'),
     path('api/list', api_view.RoomListView.as_view(), name='api_room_list'),
     path('api/list/<int:pk>', api_view.RoomDetailView.as_view(), name='api_room_detail'),

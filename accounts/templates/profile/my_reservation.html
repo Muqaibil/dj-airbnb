@@ -36,7 +36,7 @@
 								<div class="text p-3">
 									<div class="d-flex">
 										<div class="one">
-											<h3><a href="{{room.get_absolute_url}}">{{room}}</a></h3>
+											<h3><a href="{{room.get_absolute_url}}">{{room.room.name}}</a></h3>
 											<p class="rate">
 												<i class="icon-star"></i>
 												<i class="icon-star"></i>
@@ -54,7 +54,7 @@
 									<hr>
 									<p class="bottom-area d-flex">
 										<span><i class="icon-map-o"></i> {{room.room.location}}</span>
-										<span class="ml-auto"><a href="">Write Feedback</a></span>
+										<span class="ml-auto"><a href="{% url 'accounts:add_feedback' room.room.slug %}">Write Feedback</a></span>
 									</p>
 								</div>
 							</div>
