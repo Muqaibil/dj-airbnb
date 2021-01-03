@@ -34,11 +34,13 @@ class Room(models.Model):
         now = timezone.now().date()
         for reservation in all_reservations:
             if now > reservation.to_date:
-                return 'Available'
+               return 'Available'
             elif now > reservation.from_date and now < reservation.to_date:
-                return f'In Progress to {reservation.to_date}'
+               return f'In Progress to {reservation.to_date}'
         
         return 'Available'
+
+ 
 
     def get_avg_rating(self):
         all_reviews =self.room_review.all()
