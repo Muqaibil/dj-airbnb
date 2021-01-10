@@ -34,3 +34,4 @@ class RoomBookAdmin(admin.ModelAdmin):
 
 admin.site.register(models.RoomBook, RoomBookAdmin) 
 admin.site.register(models.RoomImage)
+admin.site.register(models.Place)
