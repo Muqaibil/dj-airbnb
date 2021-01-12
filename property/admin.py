@@ -15,7 +15,7 @@ class RoomAdmin(SummernoteModelAdmin, admin.ModelAdmin): #Why did we put summern
     #This customized admin is created to merge more than a model registeration into one page. 
     #for example, room and roomImages Here
 
-    list_display = ['name','location','price','get_avg_rating', 'check_availability']
+    list_display = ['name','location','price','get_avg_rating', 'check_availability','category']
     inlines = [RoomImageTabular,] 
     summernote_fields = ('description')
     prepopulated_fields = {'slug': ("name",)}
