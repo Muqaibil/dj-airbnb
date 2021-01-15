@@ -150,3 +150,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, "media")
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'qmam770@gmail.com'
+EMAIL_HOST_PASSWORD ='ddbipnqcubpfswxf'
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587'
+#this django email sending setting from documentation for sending email method

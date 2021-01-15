@@ -44,7 +44,7 @@
           <li class="nav-item"><a href="tour.html" class="nav-link">Tour</a></li>
           <li class="nav-item active"><a href="{% url 'rooms:property_list' %}" class="nav-link">Property</a></li>
           <li class="nav-item"><a href="{% url 'blog:post_list' %}" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="{% url 'home:contact' %}" class="nav-link">Contact</a></li>
           
           {% if request.user.is_authenticated %}
             <li class="nav-item cta"><a href="{% url 'accounts:profile' %}" class="nav-link"><span>Profile</span></a></li>

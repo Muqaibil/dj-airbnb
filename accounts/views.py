@@ -60,6 +60,11 @@ def user_reservation(request):
     return render(request,'profile/my_reservation.html',{'my_reservation':my_reservation})
 
 
+def user_rooms(request):
+    my_rooms = Room.objects.filter(owner=request.user)
+    return render(request,'profile/my_rooms.html',{'my_rooms':my_rooms})
+
+
 def add_feedback(request, slug):
     room = get_object_or_404(Room, slug=slug)
     if request.method == 'POST':

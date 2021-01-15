@@ -1,9 +1,13 @@
 from django.shortcuts import render
+from settings.models import Info
 from . import views
 from property.models import Place, Room, Category
 from blog.models import Post
 from django.db.models import Q, Count
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 # Create your views here.
 
@@ -58,6 +62,25 @@ def filter_by_category(request, category_name):
 
     properties = Room.objects.filter(category__name=category_name)
     return render(request,'settings/home_search.html',{'search_result':properties})
+
+def contact(request):
+    info = Info.objects.last()
+    if request.method == 'POST':
+        name = request.POST['name'] #getting the value from html form  and assign the value of the field 'name' to a variable
+        email = request.POST['email'] #getting the value from html form  and assign the value of the field 'email' to a variable
+        subject = request.POST['subject']#getting the value from html form  and assign the value of the field 'subject' to a variable
+        message = request.POST['message']#getting the value from html form  and assign the value of the field 'message' to a variable
+        #this method is to have a NAME html attribute in order to call the value of the field frmo django view  
+
+        send_mail(
+            subject,
+            f'Message from: {name} \n Email {email} \n Message: {message}',
+            email,
+            [settings.EMAIL_HOST_USER],
+            fail_silently=False,
+        )#this django email sending from documentation and using F string to format the message
+
+    return render(request,'settings/contact.html',{'info':info})
 
 
 
