@@ -27,3 +27,11 @@ class PostDetail(DetailView):
         context ["categories"] = Category.objects.all().annotate(post_count=Count("post_category"))
         context ["tags"] = Tag.objects.all()
         return context
+        
+    def get_object(self, queryset=None):
+        object = super(PostDetail, self).get_object(queryset=queryset)
+        object.viwe_count +=1
+        object.save()
+
+        return object
+
