@@ -3,10 +3,12 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+
 
 # Create your models here.
 class Room(models.Model):
-    owner = models.ForeignKey(User, related_name='room_owner', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name='room_owner', on_delete=models.CASCADE, verbose_name = _('owner'))
     name = models.CharField(max_length=50)
     price = models.IntegerField()
     description = models.TextField(max_length=10000)
