@@ -25,7 +25,7 @@ SECRET_KEY = 'tq8y+hyyx*gpbz+t$uitm6(6q_7a%wd1_@5(5bore1+8wy%7(x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-airbnb.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
